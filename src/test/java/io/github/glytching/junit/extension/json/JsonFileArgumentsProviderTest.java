@@ -9,16 +9,8 @@ import java.util.Map;
 import lombok.Data;
 import org.jeasy.random.EasyRandom;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 public class JsonFileArgumentsProviderTest {
-
-    @ParameterizedTest
-    @CsvSource(value = {"1,2", "3,4"})
-    void should_show_how_to_parse_multi_args_with_csv(Integer in, Integer out) {
-        assertEquals(out, in + 1);
-    }
 
     @JsonFileSource(resources = {"string_test_case.json"})
     void should_generate_test_case_json_lack_of_it(TestCase<String, String> testCase) {
@@ -59,7 +51,7 @@ public class JsonFileArgumentsProviderTest {
     }
 
     @Test
-    void setNullIfRecursive() {
+    void set_null_if_recursive() {
         RecursionClass recursionClass = new EasyRandom().nextObject(RecursionClass.class);
         JsonFileArgumentsProvider.setNullIfRecursive(recursionClass);
         assertNull(recursionClass.getRecursionClass());
